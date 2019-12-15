@@ -1,6 +1,10 @@
 defmodule GuessingGame do
+  # guard method signature for inputting hig and low in the wrong order.
+  def guess(high, low) when high > low, do: guess(low, high)
+
+  # main implementation of the guess method
   def guess(low, high) do
-    answer = IO.gets("Hmmm... maybe you are thinking of #{mid(low, high)}.")
+    answer = IO.gets("Hmmm... maybe you are thinking of #{mid(low, high)}.\n")
 
     case String.trim(answer) do
       "bigger" ->
@@ -10,7 +14,7 @@ defmodule GuessingGame do
         smaller(low, high)
 
       "yes" ->
-        "I knew I could guess your number!"
+        "I knew I could guess your number!\n"
 
       _ ->
         IO.puts ~s{Type "bigger", "smaller" or "yes".}
